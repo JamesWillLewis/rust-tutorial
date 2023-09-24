@@ -1,37 +1,75 @@
-use std::io;
-use std::cmp::Ordering;
-use rand::Rng;
 
 fn main() {
-    println!("Guess the number!");
 
-    let secret_number = rand::thread_rng().gen_range(1..=100);
+    let tup: (i32, i32) = (10, 10);
+    let tup0 = tup.0;
 
-    println!("The secret number is: {secret_number}");
-    loop {
-        println!("Please input your guess.");
+    println!("tup is {tup0}");
 
-        let mut guess = String::new();
-
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
+    let arr: [i32; 5] = [1, 2, 3, 4, 5];
 
 
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
+    let first = &arr[0];
+    let arr_ref = *first;
+    println!("{arr_ref}");
 
-        println!("You guessed: {guess}");
+    let res = another_function("Hello world", '🤓');
+    println!("Response is {res}");
 
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => {
-                println!("You win!");
-                break;
-            },
+    control_flow_stuff();
+    loopy();
+    while_loop();
+    for_loop();
+}
+
+fn loopy() {
+    let mut counter = 0;
+
+    let final_val = loop {
+        if counter >= 10 {
+            break counter;
         }
+
+        println!("iteration {counter}");
+        counter += 1;
+    };
+
+    println!("Final value is {final_val}");
+}
+
+fn while_loop() {
+    let mut number = 3;
+
+    while number != 0 {
+        println!("{number}!");
+        number -= 1;
+    }
+
+    println!("LIFTOFF!!!");
+}
+
+fn for_loop() {
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a {
+        println!("the value is: {element}");
+    }
+}
+
+fn control_flow_stuff() {
+    let condition = true;
+    let if_res = if condition  {
+        "yes"
+    } else {
+        "no"
+    };
+
+    println!("if_res: {if_res}")
+}
+
+fn another_function(a: &str, some_char: char) -> &str {
+    println!("Argument a is: {a} and some_char is {some_char}");
+    {
+        "hello yourself"
     }
 }
