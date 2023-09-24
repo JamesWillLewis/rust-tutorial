@@ -1,1 +1,1 @@
-A Rust implementation of a generic framework for creating multi-agent systems allowing for agent-based simulations.
+Just learning rust from https://doc.rust-lang.org/book
